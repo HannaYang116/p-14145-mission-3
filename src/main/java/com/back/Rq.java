@@ -34,4 +34,14 @@ public class Rq {
     public String getActionName() {
         return actionName;
     }
+
+    public int getParamAsInt(String paramName, int defaultValue) {
+        String value = getParam(paramName,"");
+        if (value.isEmpty()) return defaultValue;
+        try {
+            return Integer.parseInt(value);
+        }catch (NumberFormatException e){
+            return defaultValue;
+        }
+    }
 }

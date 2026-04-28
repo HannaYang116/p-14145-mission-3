@@ -16,17 +16,20 @@ public class App {
         while (true) {
             System.out.print("명령) ");
             String cmd = scanner.nextLine().trim();
-
-            if (cmd.equals("종료")) {
-                break;
-            } else if (cmd.equals("목록")) {
-                actionList();
-            } else if (cmd.equals("등록")) {
-                actionWrite();
-            } else if (cmd.startsWith("삭제")) {
-                actionDelete(cmd);
-            } else if (cmd.startsWith("수정")) {
-                actionModify(cmd);
+            Rq rq = new Rq(cmd);
+            switch (rq.getActionName()){
+                case "종료":
+                    System.out.println("프로그램이 종료합니다.");
+                    return;
+                case "목록":
+                    actionList();
+                    break;
+                case "삭제":
+                    actionDelete(rq);
+                    break;
+                case "수정":
+                    actionModify(rq);
+                    break;
             }
         }
 
@@ -57,12 +60,12 @@ public class App {
         System.out.println("%d번 명언이 등록되었습니다.".formatted(wiseSaying.getId()));
     }
 
-    private void actionDelete(String cmd) {
-        String[] cmdBits = cmd.split("=", 2);
-
-        if (cmdBits.length < 2 || cmdBits[1].isEmpty()) {
-            System.out.println("id를 입력해주세요.");
-            return;
+    private void actionDelete(Rq rq) {
+        int id = rq.getParamAsInt("삭제" , -1);
+        if (id==-1){
+            System.out.println("id를 숫자로 입력해주세요.");
+            return ;
+        }
         }
 
         int id = Integer.parseInt(cmdBits[1]);
