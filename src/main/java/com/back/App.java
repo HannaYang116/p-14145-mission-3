@@ -1,5 +1,5 @@
 package com.back;
-//26강 할차례
+//36강 할차례
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,22 +17,15 @@ public class App {
             System.out.print("명령) ");
             String cmd = scanner.nextLine().trim();
             Rq rq = new Rq(cmd);
-            switch (rq.getActionName()){
-                case "종료":
+            switch (rq.getActionName()) {
+                case "종료" -> {
                     System.out.println("프로그램이 종료합니다.");
                     return;
-                case "목록":
-                    actionList();
-                    break;
-                case "등록":
-                    actionWrite();
-                    break;
-                case "삭제":
-                    actionDelete(rq);
-                    break;
-                case "수정":
-                    actionModify(rq);
-                    break;
+                }
+                case "목록" -> actionList();
+                case "등록" -> actionWrite();
+                case "삭제" -> actionDelete(rq);
+                case "수정" ->actionModify(rq);
             }
         }
 
