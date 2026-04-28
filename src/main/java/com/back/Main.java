@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         App app = new App();
         app.run();
-        testRq1();
+        //testRq1();
     }
 
     private static void testRq1(){

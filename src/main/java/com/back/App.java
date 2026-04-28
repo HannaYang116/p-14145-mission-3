@@ -24,6 +24,9 @@ public class App {
                 case "목록":
                     actionList();
                     break;
+                case "등록":
+                    actionWrite();
+                    break;
                 case "삭제":
                     actionDelete(rq);
                     break;
@@ -33,7 +36,6 @@ public class App {
             }
         }
 
-        scanner.close();
     }
     // 진입점 끝
 
@@ -61,34 +63,26 @@ public class App {
     }
 
     private void actionDelete(Rq rq) {
-        int id = rq.getParamAsInt("삭제" , -1);
+        int id = rq.getParamAsInt("id" , -1);
         if (id==-1){
             System.out.println("id를 숫자로 입력해주세요.");
             return ;
         }
-        }
-
-        int id = Integer.parseInt(cmdBits[1]);
-
-        int deletedIndex = delete(id);
-
-        if (deletedIndex == -1) {
+        boolean  deleted = delete(id);
+        if (!deleted){
             System.out.println("%d번 명언은 존재하지 않습니다.".formatted(id));
             return;
         }
-
         System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
     }
 
-    private void actionModify(String cmd) {
-        String[] cmdBits = cmd.split("=", 2);
+    private void actionModify(Rq rq) {
+        int id = rq.getParamAsInt("id",-1);
 
-        if (cmdBits.length < 2 || cmdBits[1].isEmpty()) {
+        if (id == -1) {
             System.out.println("id를 입력해주세요.");
             return;
         }
-
-        int id = Integer.parseInt(cmdBits[1]);
 
         WiseSaying wiseSaying = findById(id);
 
@@ -143,13 +137,13 @@ public class App {
         wiseSaying.setAuthor(author);
     }
 
-    private int delete(int id) {
+    private boolean delete(int id) {
         int deleteIndex = findIndexById(id);
 
-        if (deleteIndex == -1) return deleteIndex;
+        if (deleteIndex == -1) return false;
 
         wiseSayings.remove(deleteIndex);
 
-        return deleteIndex;
+        return true;
     }
 }
