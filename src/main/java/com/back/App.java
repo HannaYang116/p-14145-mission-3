@@ -1,5 +1,5 @@
 package com.back;
-//36강 할차례
+//37강 레이어드 아키텍처부터
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
