@@ -1,11 +1,14 @@
 package com.back;
 
+import java.time.LocalDateTime;
 import java.util.Formatter;
 
 public class WiseSaying {
     private int id;
     private String content;
     private String author;
+    private LocalDateTime createDate;
+    private LocalDateTime modifyDate;
     public WiseSaying(String content, String author){
         this.content = content;
         this.author = author;
@@ -30,5 +33,23 @@ public class WiseSaying {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public LocalDateTime getCreateDate(){
+        return createDate;
+    }
+    public void setCreateDate(LocalDateTime createDate){
+        this.createDate = createDate;
+    }
+    public LocalDateTime getModifyDate(){
+        return modifyDate;
+    }
+
+    public void setModifyDate(LocalDateTime modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
+    public boolean isNew(){
+        return getId() == 0;
     }
 }
