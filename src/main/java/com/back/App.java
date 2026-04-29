@@ -3,15 +3,19 @@ package com.back;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import com.back.domain.system.controller.SystemController;
 
 public class App {
     private Scanner scanner = new Scanner(System.in);
     private int lastId = 0;
     private List<WiseSaying> wiseSayings = new ArrayList<>();
 
+
     // 진입점 시작
     public void run() {
         System.out.println("== 명언 앱 ==");
+
+        SystemController systemController = new SystemController();
 
         while (true) {
             System.out.print("명령) ");
@@ -19,7 +23,7 @@ public class App {
             Rq rq = new Rq(cmd);
             switch (rq.getActionName()) {
                 case "종료" -> {
-                    System.out.println("프로그램이 종료합니다.");
+                    systemController.actionExit();
                     return;
                 }
                 case "목록" -> actionList();
