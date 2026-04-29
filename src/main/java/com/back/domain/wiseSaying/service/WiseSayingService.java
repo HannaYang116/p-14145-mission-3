@@ -1,5 +1,6 @@
 package com.back.domain.wiseSaying.service;
 
+import com.back.AppContext;
 import com.back.WiseSaying;
 import com.back.domain.wiseSaying.repository.WiseSayingRepository;
 
@@ -9,14 +10,14 @@ import java.util.List;
 public class WiseSayingService {
 
 
-    private final WiseSayingRepository wiseSayingRepository;
+    private final WiseSayingRepository wiseSayingRepository ;
 
     public List<WiseSaying> findForList() {
         return wiseSayingRepository.findForList();
     }
 
     public WiseSayingService(){
-        this.wiseSayingRepository = new WiseSayingRepository();
+        this.wiseSayingRepository = AppContext.wiseSayingRepository;
     }
 
     public WiseSaying write(String content, String author) {

@@ -6,14 +6,13 @@ import com.back.domain.wiseSaying.controller.WiseSayingController;
 import com.back.domain.system.controller.SystemController;
 
 public class App {
-    private Scanner scanner = new Scanner(System.in);
 
     // 진입점 시작
     public void run() {
+        Scanner scanner = AppContext.scanner;
         System.out.println("== 명언 앱 ==");
-
-        SystemController systemController = new SystemController();
-        WiseSayingController wiseSayingController = new WiseSayingController(scanner);
+        SystemController systemController = AppContext.systemController;
+        WiseSayingController wiseSayingController = AppContext.wiseSayingController;
 
         while (true) {
             System.out.print("명령) ");
